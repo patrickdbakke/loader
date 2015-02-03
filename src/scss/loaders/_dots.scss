@@ -1,0 +1,97 @@
+$numDots: 20;
+$offSets: 1;
+@for $i from 0 to $numDots {
+    $offSets: append($offSets, random($numDots));
+}
+
+.#{$loader-prefix}-dots-vert {
+    &:before {
+        content: '';
+        border-radius: 5em;
+        background: transparent;
+        font-size: #{1 / $numDots * 1em};
+        height: 1em;
+        width: 1em;
+        position: absolute;
+        left: 0;
+        top: 0;
+        $boxShadowString: "";
+        @for $i from 0 to $numDots {
+        	$x: #{$i * 1em};
+        	$y: ((sin(2 * pi() * ($i + nth($offSets, $i + 1)) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
+        	$color: nth($loader-colors, $i % length($loader-colors) + 1);
+        	$currentShadow: ($x $y $color);
+            $boxShadowString: $boxShadowString + $currentShadow;
+            @if $i < $numDots - 1 {
+                $boxShadowString: $boxShadowString + ",";
+            }
+        }
+        box-shadow: #{$boxShadowString};
+        -webkit-animation: #{$loader-prefix}-dots-vert-keyframe #{$loader-duration} infinite linear;
+    }
+}
+
+@-webkit-keyframes #{#{$loader-prefix}-dots-vert-keyframe} {
+	@for $j from 0 to $numDots {
+        #{$j / $numDots * 100%} {
+        	$boxShadowString: "";
+            @for $i from 0 to $numDots {
+	        	$x: #{$i * 1em};
+	        	$y: ((sin(2 * pi() * ($i + nth($offSets, $i + 1) + $j) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
+	        	$color: nth($loader-colors, $i % length($loader-colors) + 1);
+	        	$currentShadow: ($x $y $color);
+	            $boxShadowString: $boxShadowString + $currentShadow;
+	            @if $i < $numDots - 1 {
+	                $boxShadowString: $boxShadowString + ",";
+	            }
+	        }
+	        box-shadow: #{$boxShadowString};
+        }
+    }
+}
+
+.#{$loader-prefix}-dots-horiz {
+    &:before {
+        content: '';
+        border-radius: 5em;
+        background: transparent;
+        font-size: #{1 / $numDots * 1em};
+        height: 1em;
+        width: 1em;
+        position: absolute;
+        left: 0;
+        top: 0;
+        $boxShadowString: "";
+        @for $i from 0 to $numDots {
+            $y: #{$i * 1em};
+            $x: ((sin(2 * pi() * ($i + nth($offSets, $i + 1)) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
+            $color: nth($loader-colors, $i % length($loader-colors) + 1);
+            $currentShadow: ($x $y $color);
+            $boxShadowString: $boxShadowString + $currentShadow;
+            @if $i < $numDots - 1 {
+                $boxShadowString: $boxShadowString + ",";
+            }
+        }
+        box-shadow: #{$boxShadowString};
+        -webkit-animation: #{$loader-prefix}-dots-horiz-keyframe #{$loader-duration} infinite linear;
+    }
+}
+
+@-webkit-keyframes #{#{$loader-prefix}-dots-horiz-keyframe} {
+    @for $j from 0 to $numDots {
+        #{$j / $numDots * 100%} {
+            $boxShadowString: "";
+            @for $i from 0 to $numDots {
+                $y: #{$i * 1em};
+                $x: ((sin(2 * pi() * ($i + nth($offSets, $i + 1) + $j) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
+                $color: nth($loader-colors, $i % length($loader-colors) + 1);
+                $currentShadow: ($x $y $color);
+                $boxShadowString: $boxShadowString + $currentShadow;
+                @if $i < $numDots - 1 {
+                    $boxShadowString: $boxShadowString + ",";
+                }
+            }
+            box-shadow: #{$boxShadowString};
+        }
+    }
+}
