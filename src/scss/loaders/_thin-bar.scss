@@ -1,0 +1,26 @@
+.#{$loader-prefix}-thin-bar {
+    overflow: hidden;
+    &:before {
+        content: '';
+        background: $white;
+        height: 1px;
+        width: 200%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, nth($loader-colors, 1)), color-stop(25%, nth($loader-colors, 2)), color-stop(50%, nth($loader-colors, 1)), color-stop(75%, nth($loader-colors, 2)), color-stop(100%, nth($loader-colors, 1)));
+        -webkit-animation: #{$loader-prefix}-thin-bar-keyframe #{$loader-duration} infinite linear;
+    }
+}
+
+@-webkit-keyframes #{#{$loader-prefix}-thin-bar-keyframe} {
+    0% {
+        left: 0%;
+    }
+    50% {
+        left: -50%;
+    }
+    100% {
+        left: -100%;
+    }
+}

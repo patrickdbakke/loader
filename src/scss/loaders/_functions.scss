@@ -1,0 +1,17 @@
+@function setnth($list, $n, $value) {
+    $new_list: ();
+    @for $i from 1 through max($n, length($list)) {
+        @if $i == $n {
+            $new_list: append($new_list, $value);
+        }
+        @else {
+            @if length($list) >= $i {
+                $new_list: append($new_list, nth($list, $i));
+            }
+            @else {
+                $new_list: append($new_list, null);
+            }
+        }
+    }
+    @return $new_list;
+}

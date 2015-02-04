@@ -1,0 +1,74 @@
+$scale: 1 / 8;
+
+$p1: $scale * -1em;
+$p2: $scale * 0em;
+$p3: $scale * 1em;
+$positions: $p1, $p2, $p3;
+$centerX: $loader-width / 2 - $scale / 2 * 1em;
+$centerY: $loader-height / 2 - $scale / 2 * 1em;
+$originalPositionsX: $p1 $p2 $p3 $p1 $p2 $p3 $p1 $p2 $p3 $p1 $p2 $p3 $p1 $p2 $p3 $p1 $p2 $p3;
+$originalPositionsY: $p1 $p1 $p1 $p2 $p2 $p2 $p3 $p3 $p3 $p1 $p1 $p1 $p2 $p2 $p2 $p3 $p3 $p3;
+
+.#{$loader-prefix}-rubix {
+    width: 100%;
+    height: 100%;
+    &:before {
+        content: '';
+        background: transparent;
+        height: #{$scale * 1em};
+        width: #{$scale * 1em};
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        $boxShadowString: "";
+        @for $i from 1 to 18 {
+            $newShadow: #{$centerX + nth($originalPositionsX, $i)} #{$centerY + nth($originalPositionsY, $i)} #{nth($loader-colors, ($i + 1) % length($loader-colors) + 1)};
+            $boxShadowString: $boxShadowString + $newShadow;
+            @if $i < 17 {
+                $boxShadowString: $boxShadowString + ",";
+            }
+        }
+        box-shadow: #{$boxShadowString};
+        -webkit-animation: #{$loader-prefix}-rubix-keyframe #{$loader-duration} infinite linear alternate;
+    }
+    &:after {
+        content: '';
+        background: transparent;
+        height: #{$scale * 3 * 1em};
+        width: #{$scale * 3 * 1em};
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-shadow: #{$centerX - $scale * 1em} #{$centerY - $scale * 1em} nth($loader-colors, 1);
+        z-index: 0;
+    }
+}
+
+@-webkit-keyframes #{#{$loader-prefix}-rubix-keyframe} {
+    $nextPositionsX: $originalPositionsX;
+    $nextPositionsY: $originalPositionsY;
+    @for $j from 1 to 40 {
+        #{$j * 10%} {
+            $boxShadowString: "";
+            @for $i from 1 to 18 {
+                $newShadow: #{$centerX + nth($nextPositionsX, $i)} #{$centerY + nth($nextPositionsY, $i)} #{nth($loader-colors, ($i + 1) % length($loader-colors) + 1)};
+                $boxShadowString: $boxShadowString + $newShadow;
+                @if $i < 17 {
+                    $boxShadowString: $boxShadowString + ",";
+                }
+                @if random(5) > 3 {
+                    @if random(2) > 1 {
+                        $nextPositionsX: setnth($nextPositionsX, $i, nth($positions, random(3)));
+                        $temp: setnth($nextPositionsX, $i, nth($positions, random(3)));
+                    }
+                    @else {
+                        $nextPositionsY: setnth($nextPositionsY, $i, nth($positions, random(3)));
+                        $temp: setnth($nextPositionsY, $i, nth($positions, random(3)));
+                    }
+                }
+            }
+            box-shadow: #{$boxShadowString};
+        }
+    }
+}

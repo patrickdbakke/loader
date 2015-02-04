@@ -1,6 +1,9 @@
-@import "loaders/wave";
-@import "loaders/spiral";
+@import "loaders/functions";
 @import "loaders/dots";
+@import "loaders/rubix";
+@import "loaders/spiral";
+@import "loaders/thin-bar";
+@import "loaders/wave";
 
 .loaders {
     display: inline-block;
@@ -12,7 +15,7 @@
 .#{$loader-prefix} {
     position: relative;
     display: inline-block;
-    height: 1em;
-    width: 1em;
+    height: 100%;
+    width: 100%;
     margin: 0;
 }

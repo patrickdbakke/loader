@@ -1,7 +1,8 @@
 $numDots: 20;
 $offSets: 1;
+
 @for $i from 0 to $numDots {
-    $offSets: append($offSets, random($numDots));
+    $offSets: append($offSets, random($numDots * 10) / 10);
 }
 
 .#{$loader-prefix}-dots-vert {
@@ -17,10 +18,10 @@ $offSets: 1;
         top: 0;
         $boxShadowString: "";
         @for $i from 0 to $numDots {
-        	$x: #{$i * 1em};
-        	$y: ((sin(2 * pi() * ($i + nth($offSets, $i + 1)) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
-        	$color: nth($loader-colors, $i % length($loader-colors) + 1);
-        	$currentShadow: ($x $y $color);
+            $x: #{$i * $loader-width};
+            $y: (sin(2 * pi() * ($i + nth($offSets, $i + 1)) / $numDots) * $numDots / 2 + $numDots / 2) * $loader-height - 0.5em;
+            $color: nth($loader-colors, $i % length($loader-colors) + 1);
+            $currentShadow: $x $y $color;
             $boxShadowString: $boxShadowString + $currentShadow;
             @if $i < $numDots - 1 {
                 $boxShadowString: $boxShadowString + ",";
@@ -32,23 +33,24 @@ $offSets: 1;
 }
 
 @-webkit-keyframes #{#{$loader-prefix}-dots-vert-keyframe} {
-	@for $j from 0 to $numDots {
+    @for $j from 0 to $numDots {
         #{$j / $numDots * 100%} {
-        	$boxShadowString: "";
+            $boxShadowString: "";
             @for $i from 0 to $numDots {
-	        	$x: #{$i * 1em};
-	        	$y: ((sin(2 * pi() * ($i + nth($offSets, $i + 1) + $j) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
-	        	$color: nth($loader-colors, $i % length($loader-colors) + 1);
-	        	$currentShadow: ($x $y $color);
-	            $boxShadowString: $boxShadowString + $currentShadow;
-	            @if $i < $numDots - 1 {
-	                $boxShadowString: $boxShadowString + ",";
-	            }
-	        }
-	        box-shadow: #{$boxShadowString};
+                $x: #{$i * $loader-width};
+                $y: (sin(2 * pi() * ($i + nth($offSets, $i + 1) + $j) / $numDots) * $numDots / 2 + $numDots / 2) * $loader-height - 0.5em;
+                $color: nth($loader-colors, $i % length($loader-colors) + 1);
+                $currentShadow: $x $y $color;
+                $boxShadowString: $boxShadowString + $currentShadow;
+                @if $i < $numDots - 1 {
+                    $boxShadowString: $boxShadowString + ",";
+                }
+            }
+            box-shadow: #{$boxShadowString};
         }
     }
 }
+
 
 .#{$loader-prefix}-dots-horiz {
     &:before {
@@ -63,10 +65,10 @@ $offSets: 1;
         top: 0;
         $boxShadowString: "";
         @for $i from 0 to $numDots {
-            $y: #{$i * 1em};
-            $x: ((sin(2 * pi() * ($i + nth($offSets, $i + 1)) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
+            $y: #{$i * $loader-height};
+            $x: (sin(2 * pi() * ($i + nth($offSets, $i + 1)) / $numDots) * $numDots / 2 + $numDots / 2) * $loader-width - 0.5em;
             $color: nth($loader-colors, $i % length($loader-colors) + 1);
-            $currentShadow: ($x $y $color);
+            $currentShadow: $x $y $color;
             $boxShadowString: $boxShadowString + $currentShadow;
             @if $i < $numDots - 1 {
                 $boxShadowString: $boxShadowString + ",";
@@ -82,10 +84,10 @@ $offSets: 1;
         #{$j / $numDots * 100%} {
             $boxShadowString: "";
             @for $i from 0 to $numDots {
-                $y: #{$i * 1em};
-                $x: ((sin(2 * pi() * ($i + nth($offSets, $i + 1) + $j) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
+                $y: #{$i * $loader-height};
+                $x: (sin(2 * pi() * ($i + nth($offSets, $i + 1) + $j) / $numDots) * $numDots / 2 + $numDots / 2) * $loader-width - 0.5em;
                 $color: nth($loader-colors, $i % length($loader-colors) + 1);
-                $currentShadow: ($x $y $color);
+                $currentShadow: $x $y $color;
                 $boxShadowString: $boxShadowString + $currentShadow;
                 @if $i < $numDots - 1 {
                     $boxShadowString: $boxShadowString + ",";

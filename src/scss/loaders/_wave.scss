@@ -13,10 +13,10 @@ $numDots: 20;
         top: 0;
         $boxShadowString: "";
         @for $i from 0 to $numDots {
-        	$x: #{$i * 1em};
-        	$y: ((sin(2 * pi() * $i / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
-        	$color: nth($loader-colors, $i % length($loader-colors) + 1);
-        	$currentShadow: ($x $y $color);
+            $x: #{$i * $loader-width};
+            $y: (sin(2 * pi() * $i / $numDots) * $numDots / 2 + $numDots / 2) * $loader-height - 0.5em;
+            $color: nth($loader-colors, $i % length($loader-colors) + 1);
+            $currentShadow: $x $y $color;
             $boxShadowString: $boxShadowString + $currentShadow;
             @if $i < $numDots - 1 {
                 $boxShadowString: $boxShadowString + ",";
@@ -28,20 +28,20 @@ $numDots: 20;
 }
 
 @-webkit-keyframes #{#{$loader-prefix}-wave-keyframe} {
-	@for $j from 0 to $numDots {
+    @for $j from 0 to $numDots {
         #{$j / $numDots * 100%} {
-        	$boxShadowString: "";
+            $boxShadowString: "";
             @for $i from 0 to $numDots {
-	        	$x: #{$i * 1em};
-	        	$y: ((sin(2 * pi() * ($i + $j) / $numDots) * $numDots / 2) + $numDots/2 ) * 1em - .5em;
-	        	$color: nth($loader-colors, $i % length($loader-colors) + 1);
-	        	$currentShadow: ($x $y $color);
-	            $boxShadowString: $boxShadowString + $currentShadow;
-	            @if $i < $numDots - 1 {
-	                $boxShadowString: $boxShadowString + ",";
-	            }
-	        }
-	        box-shadow: #{$boxShadowString};
+                $x: #{$i * $loader-width};
+                $y: (sin(2 * pi() * ($i + $j) / $numDots) * $numDots / 2 + $numDots / 2) * $loader-height - 0.5em;
+                $color: nth($loader-colors, $i % length($loader-colors) + 1);
+                $currentShadow: $x $y $color;
+                $boxShadowString: $boxShadowString + $currentShadow;
+                @if $i < $numDots - 1 {
+                    $boxShadowString: $boxShadowString + ",";
+                }
+            }
+            box-shadow: #{$boxShadowString};
         }
     }
 }
