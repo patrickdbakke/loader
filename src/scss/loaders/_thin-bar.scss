@@ -1,9 +1,9 @@
-$color1: nth($loader-colors, 1);
-$color2: nth($loader-colors, 2);
-$color1: $grey-600;
-$color2: $grey-800;
-
-.#{$loader-prefix}-thin-bar {
+@mixin loader-thin-bar($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color) {
+    @include loader($loader-width, $loader-height);
+    $color1: nth($loader-colors, 1);
+    $color2: nth($loader-colors, 2);
+    $color1: $grey-600;
+    $color2: $grey-800;
     overflow: hidden;
     &:before {
         content: '';
@@ -16,16 +16,15 @@ $color2: $grey-800;
         background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, $color1), color-stop(25%, $color2), color-stop(50%, $color1), color-stop(75%, $color2), color-stop(100%, $color1));
         -webkit-animation: #{$loader-prefix}-thin-bar-keyframe #{$loader-duration / 4} infinite linear;
     }
-}
-
-@-webkit-keyframes #{#{$loader-prefix}-thin-bar-keyframe} {
-    0% {
-        left: 0%;
-    }
-    50% {
-        left: -50%;
-    }
-    100% {
-        left: -100%;
+    @-webkit-keyframes #{#{$loader-prefix}-thin-bar-keyframe} {
+        0% {
+            left: 0%;
+        }
+        50% {
+            left: -50%;
+        }
+        100% {
+            left: -100%;
+        }
     }
 }

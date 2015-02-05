@@ -1,10 +1,10 @@
 @import "compass/reset";
-@import "./colors";
+@import "./shared/colors";
 
 $loader-prefix: loader;
 $loader-duration: 3s;
-$loader-width: 2em;
-$loader-height: 1em;
+$loader-width: 20em;
+$loader-height: 10em;
 $loader-accent-color: black;
 $loader-colors: #369EAD, #C24642, #7F6084, #86B402, #A2D1CF, #C8B631, #6DBCEB, #52514E, #4F81BC, #A064A1, #F79647;
 
@@ -12,57 +12,38 @@ $loader-colors: #369EAD, #C24642, #7F6084, #86B402, #A2D1CF, #C8B631, #6DBCEB, #
 
 @import "./loaders/importer";
 
-body {
-    background: #252520;
-    font-size: 16px;
+.#{$loader-prefix}-content {
+    @include loader-content($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
-.content {
-    position: absolute;
-    overflow: auto;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: .5em;
-    font-size: 12em;
+.#{$loader-prefix}-dots {
+    @include loader-dots($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
-.wrap {
-    display: inline-block;
-    font-size: 1em;
-    width: $loader-width;
-    height: $loader-height;
-    border: 1px solid $grey-800;
-    padding: .05em;
-    border-radius: .05em;
-    position: relative;
-    &:hover {
-        &:after, &:before {
-            content: '';
-            position: absolute;
-            z-index: -1;
-        }
-        &:after {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            border-left: 1px solid $grey-900;
-        }
-        &:before {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            border-top: 1px solid $grey-900;
-        }
-    }
+.#{$loader-prefix}-hourglass {
+    @include loader-hourglass($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
-.loaders {
-    display: inline-block;
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
+.#{$loader-prefix}-revolve {
+    @include loader-revolve($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
+}
+
+.#{$loader-prefix}-rubix-open {
+    @include loader-rubix-open($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
+}
+
+.#{$loader-prefix}-rubix {
+    @include loader-rubix($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
+}
+
+.#{$loader-prefix}-spiral {
+    @include loader-spiral($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
+}
+
+.#{$loader-prefix}-thin-bar {
+    @include loader-thin-bar($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
+}
+
+.#{$loader-prefix}-wave {
+    @include loader-wave($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }

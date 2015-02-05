@@ -20,6 +20,7 @@
     "jquery": true,
     "node": true,
     "globals": {
-          "_": false
+          "_": false,
+          "angular": false
     }
 }

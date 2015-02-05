@@ -1,8 +1,8 @@
-.#{$loader-prefix} {
+@mixin loader($loader-width, $loader-height) {
     position: relative;
     display: inline-block;
-    height: 100%;
-    width: 100%;
+    width: $loader-width;
+    height: $loader-height;
     margin: 0;
     overflow: hidden;
 }

@@ -17,18 +17,41 @@ module.exports = function(grunt) {
             },
             build: {
                 options: {
-                    cssDir: ['<%= pkg.folders.app %>/css'],
-                    sassDir: ['<%= pkg.folders.app %>/src/scss'],
+                    cssDir: ['<%= pkg.folders.app %>css'],
+                    sassDir: ['<%= pkg.folders.app %>src/scss'],
                     quiet: true,
                     outputStyle: 'compressed',
                     noLineComments: true
                 }
             }
         },
+        html2js: {
+            options: {
+                base: '<%= pkg.folders.app %>src'
+            },
+            loader: {
+                src: ['<%= pkg.folders.app %>src/views/**/*.html'],
+                dest: '<%= pkg.folders.app %>src/js/templates.js'
+            }
+        },
         watch: {
             compass: {
                 files: ['src/**/*.scss'],
                 tasks: ['compass:dev'],
+                options: {
+                    livereload: true,
+                },
+            },
+            html: {
+                files: ['src/**/*.html'],
+                tasks: ['html2js'],
+                options: {
+                    livereload: true,
+                },
+            },
+            js: {
+                files: ['src/**/*.js'],
+                tasks: [],
                 options: {
                     livereload: true,
                 },
@@ -50,6 +73,9 @@ module.exports = function(grunt) {
                 reporter: require('jshint-stylish')
             },
             all: [
+                'src/**/*.js', 
+                '!src/js/templates.js',
+                '!src/js/bower_components/**/*',
                 '*.js', 
             ]
         }
@@ -62,6 +88,7 @@ module.exports = function(grunt) {
         'compass:dev',
         'connect:server',
         'connect:livereload',
+        'html2js',
         'watch',
     ]);
     grunt.registerTask('default', [

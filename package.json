@@ -15,6 +15,7 @@
     "jshint-stylish": "*",
     "grunt-contrib-watch": "*",
     "livereload": "*",
+    "grunt-html2js": "*",
     "grunt-contrib-connect": "*"
   }
 }

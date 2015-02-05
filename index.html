@@ -10,26 +10,31 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
+        <link rel="stylesheet" href="css/site.css">
         <link rel="stylesheet" href="css/loader.css">
 
         <script src="//localhost:35729/livereload.js"></script>
     </head>
     <body>
-        <div class="content">
-            <div class="loaders">
-                <div class="wrap"><div class="loader loader-content"></div></div>
-                <div class="wrap"><div class="loader loader-hourglass"></div></div>
-                <div class="wrap"><div class="loader loader-revolve"></div></div>
-                <div class="wrap"><div class="loader loader-thin-bar"></div></div>
-                <div class="wrap"><div class="loader loader-wave"></div></div>
-                <div class="wrap"><div class="loader loader-spiral"></div></div>
-                <div class="wrap"><div class="loader loader-rubix"></div></div>
-                <div class="wrap"><div class="loader loader-rubix-open"></div></div>
-                <div class="wrap"><div class="loader loader-dots-vert"></div></div>
-                <div class="wrap"><div class="loader loader-dots-horiz"></div></div>
-                <div class="wrap"><div class="loader loader-bars"></div></div>
-                <div class="wrap"><div class="loader loader-flying"></div></div>
-            </div>
+        <div ng-app="loader">
+            <div class="social" social></div>
+            <div class="container" ui-view></div>
         </div>
+        <script type='text/javascript' src='src/js/bower_components/lodash/lodash.js'></script> 
+        <script type='text/javascript' src='src/js/bower_components/angular/angular.js'></script> 
+        <script type='text/javascript' src='src/js/bower_components/angular-google-analytics/src/angular-google-analytics.js'></script> 
+        <script type='text/javascript' src='src/js/bower_components/angular-ui-router/release/angular-ui-router.js'></script> 
+        <script type='text/javascript' src='src/js/bower_components/jquery/dist/jquery.js'></script> 
+        <script type='text/javascript' src="src/js/app.js"></script>
+        
+        <!-- build:js js/templates.js -->
+        <script type='text/javascript' src="src/js/templates.js"></script>
+        <!-- endbuild -->
+        
+        <script type='text/javascript' src="src/js/directives/social.js"></script>
+        <script type='text/javascript' src="src/js/controllers/loaders.js"></script>
+
+        <script type='text/javascript' src="src/js/config.js"></script>
+        <script type='text/javascript' src="src/js/routes.js"></script>
     </body>
 </html>
