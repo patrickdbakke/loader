@@ -1,3 +1,8 @@
+$color1: nth($loader-colors, 1);
+$color2: nth($loader-colors, 2);
+$color1: $grey-600;
+$color2: $grey-800;
+
 .#{$loader-prefix}-thin-bar {
     overflow: hidden;
     &:before {
@@ -8,8 +13,8 @@
         position: absolute;
         left: 0;
         top: 50%;
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, nth($loader-colors, 1)), color-stop(25%, nth($loader-colors, 2)), color-stop(50%, nth($loader-colors, 1)), color-stop(75%, nth($loader-colors, 2)), color-stop(100%, nth($loader-colors, 1)));
-        -webkit-animation: #{$loader-prefix}-thin-bar-keyframe #{$loader-duration} infinite linear;
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, $color1), color-stop(25%, $color2), color-stop(50%, $color1), color-stop(75%, $color2), color-stop(100%, $color1));
+        -webkit-animation: #{$loader-prefix}-thin-bar-keyframe #{$loader-duration / 4} infinite linear;
     }
 }
 

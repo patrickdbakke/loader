@@ -1,0 +1,123 @@
+$shadowColor: $loader-accent-color;
+$glassColor: nth($loader-colors, 0 % length($loader-colors) + 1);
+$sandColor: nth($loader-colors, 1 % length($loader-colors) + 1);
+
+$sandColor: $blue;
+$glassColor: #ccc;
+
+.#{$loader-prefix}-hourglass {
+    &:before, &:after {
+        content: '.';
+        position: absolute;
+        font-size: .2em;
+        border-bottom-left-radius: .5em 1em;
+        border-bottom-right-radius: .5em 1em;
+        border-top-left-radius: .2em;
+        border-top-right-radius: .2em;
+        transform-origin: 50% 100%;
+        background: $sandColor;
+        box-shadow: -2px -2px $shadowColor, -2px 0 $shadowColor, -2px 2px $shadowColor, 0 -2px $shadowColor, 0 0 $shadowColor, 0 2px $shadowColor, 2px -2px $shadowColor, 2px 0 $shadowColor, 2px 2px $shadowColor;
+        height: 1.2em;
+        width: 1em;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        line-height: 2.4em;
+        vertical-align: middle;
+        margin-top: -12.5%;
+        margin-left: -.5em;
+        border: 0em solid $glassColor;
+        zoom: 1;
+        -webkit-animation: #{$loader-prefix}-hourglass-keyframe #{$loader-duration * 2} infinite linear;
+    }
+    &:before {
+        -webkit-animation-delay: #{$loader-duration * -1};
+        transform: rotate(180deg);
+    }
+}
+
+@-webkit-keyframes #{#{$loader-prefix}-hourglass-keyframe} {
+    /* the top, bottom and origin transitions are to hack around the glitchy positioning that the changing border was generating */
+    0% {
+        transform: rotate(0deg);
+        border-top-width: 0em;
+        height: 1.2em;
+        background: $sandColor;
+        border-top-color: $glassColor;
+        transform-origin: 50% 100%;
+        top: 50%;
+        z-index: 1;
+        line-height: .1em;
+        color: $sandColor;
+        text-shadow: 0 -0.2em 0 $sandColor, 0 -0.1em 0 $sandColor, 0 0.1em 0 $sandColor, 0 0.2em 0 $sandColor, 0 0.3em 0 $sandColor, 0 0.4em 0 $sandColor, 0 0.5em 0 $sandColor, 0 0.6em 0 $sandColor, 0 0.7em 0 $sandColor, 0 0.8em 0 $sandColor, 0 0.9em 0 $sandColor;
+    }
+    5% {
+        border-top-width: 0em;
+        height: 1.2em;
+        line-height: 2.4em;
+    }
+    40% {
+        border-top-width: 1.2em;
+        line-height: .1em;
+        height: 0em;
+        transform: rotate(0deg);
+        color: $sandColor;
+        text-shadow: 0 -0.2em 0 $sandColor, 0 -0.1em 0 $sandColor, 0 0.1em 0 $sandColor, 0 0.2em 0 $sandColor, 0 0.3em 0 $sandColor, 0 0.4em 0 $sandColor, 0 0.5em 0 $sandColor, 0 0.6em 0 $sandColor, 0 0.7em 0 $sandColor, 0 0.8em 0 $sandColor, 0 0.9em 0 $sandColor;
+    }
+    40.01% {
+        text-shadow: none;
+        color: transparent;
+    }
+    50% {
+        transform: rotate(180deg);
+        border-top-width: 1.2em;
+        height: 0em;
+        line-height: .1em;
+        background: $sandColor;
+        border-top-color: $glassColor;
+        transform-origin: 50% 100%;
+        top: 50%;
+        z-index: 1;
+    }
+    50.001% {
+        z-index: -1;
+        border-top-width: 0em;
+        height: 1.2em;
+        background: $glassColor;
+        border-top-color: $sandColor;
+        transform-origin: 50% 0%;
+        top: 100%;
+        color: transparent;
+        text-shadow: none;
+    }
+    55% {
+        border-top-width: 0em;
+        height: 1.2em;
+    }
+    90% {
+        border-top-width: 1.2em;
+        height: 0em;
+        transform: rotate(180deg);
+        transform-origin: 50% 0%;
+        top: 100%;
+        color: transparent;
+        text-shadow: none;
+    }
+    90.001% {
+        transform-origin: 50% 100%;
+        top: 50%;
+        color: transparent;
+        text-shadow: none;
+    }
+    100% {
+        border-top-width: 1.2em;
+        height: 0em;
+        transform: rotate(360deg);
+        background: $glassColor;
+        border-top-color: $sandColor;
+        z-index: -1;
+        line-height: .1em;
+        color: transparent;
+        text-shadow: none;
+    }
+}

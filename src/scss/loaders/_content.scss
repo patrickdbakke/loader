@@ -1,0 +1,51 @@
+$color1: nth($loader-colors, 0 % length($loader-colors) + 1);
+$color2: nth($loader-colors, 1 % length($loader-colors) + 1);
+$color1: $grey-600;
+$color2: $grey-800;
+$numStops: 20;
+
+.#{$loader-prefix}-content {
+    overflow: hidden;
+    &:before {
+        content: '_ ___  ___ __ ___ __ ____ _____ ____ ___ ___ __ __ _ _____ ____ _____ ___ ___ __ ____ _ __ _ ____ ___ ____ __ ____ __ __ _ ____ ___ _ ___ ____ ____ ___ ____ __ _____';
+        font-family: initial;
+        text-align: left;
+        font-size: .3em;
+        letter-spacing: -.05em;
+        position: absolute;
+        left: 0;
+        top: 0;
+        line-height: .3em;
+        margin-top: -.3em;
+        $gradientString: "";
+        @for $i from 0 to $numStops {
+            $mix: abs($numStops / 2 - $i % $numStops) / ($numStops / 2) * 100;
+            $newColor: color-stop(#{$i / $numStops * 100%}, #{mix($color1, $color2, $mix)});
+            $gradientString: $gradientString + $newColor;
+            @if $i < $numStops - 1 {
+                $gradientString: $gradientString + ",";
+            }
+        }
+        background: -webkit-gradient(linear, left top, right 50%, #{$gradientString});
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-animation: #{$loader-prefix}-content-keyframe #{$loader-duration / 4} infinite linear;
+    }
+}
+
+@-webkit-keyframes #{#{$loader-prefix}-content-keyframe} {
+    @for $j from 1 to $numStops {
+        #{$j / $numStops * 100%} {
+            $gradientString: "";
+            @for $i from 0 to $numStops {
+                $mix: abs($numStops / 2 - ($i + $j) % $numStops) / ($numStops / 2) * 100;
+                $newColor: color-stop(#{$i / $numStops * 100%}, #{mix($color1, $color2, $mix)});
+                $gradientString: $gradientString + $newColor;
+                @if $i < $numStops - 1 {
+                    $gradientString: $gradientString + ",";
+                }
+            }
+            background: -webkit-gradient(linear, left top, right 50%, #{$gradientString});
+        }
+    }
+}

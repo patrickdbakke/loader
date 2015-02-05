@@ -5,6 +5,7 @@ $loader-prefix: loader;
 $loader-duration: 3s;
 $loader-width: 2em;
 $loader-height: 1em;
+$loader-accent-color: black;
 $loader-colors: #369EAD, #C24642, #7F6084, #86B402, #A2D1CF, #C8B631, #6DBCEB, #52514E, #4F81BC, #A064A1, #F79647;
 
 // $loader-colors: $blue, $blue-100, $blue-200, $blue-300, $blue-400, $blue-500, $blue-600, $blue-700;
@@ -35,4 +36,26 @@ body {
     border: 1px solid $grey-800;
     padding: .05em;
     border-radius: .05em;
+    position: relative;
+    &:hover {
+        &:after, &:before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+        }
+        &:after {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            border-left: 1px solid $grey-900;
+        }
+        &:before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-top: 1px solid $grey-900;
+        }
+    }
 }
