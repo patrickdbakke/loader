@@ -1,12 +1,12 @@
-$shadowColor: $loader-accent-color;
-$ball1Color: nth($loader-colors, 0 % length($loader-colors) + 1);
-$ball2Color: nth($loader-colors, 1 % length($loader-colors) + 1);
-
-.#{$loader-prefix}-revolve {
+@mixin loader-revolve($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color) {
+    @include loader($loader-width, $loader-height);
+    $shadowColor: $loader-accent-color;
+    $ball1Color: nth($loader-colors, 0 % length($loader-colors) + 1);
+    $ball2Color: nth($loader-colors, 1 % length($loader-colors) + 1);
     &:before, &:after {
         content: '';
         position: absolute;
-        font-size: .25em;
+        font-size: 3em;
         border-radius: 100em;
         box-shadow: -2px -2px $shadowColor, -2px 0 $shadowColor, -2px 2px $shadowColor, 0 -2px $shadowColor, 0 0 $shadowColor, 0 2px $shadowColor, 2px -2px $shadowColor, 2px 0 $shadowColor, 2px 2px $shadowColor;
         border-bottom: 0.1em solid rgba(0, 0, 0, 0.3);
@@ -28,27 +28,25 @@ $ball2Color: nth($loader-colors, 1 % length($loader-colors) + 1);
         background: $ball2Color;
         -webkit-animation: #{#{$loader-prefix}-revolve-translate-keyframe #{$loader-duration / 4} #{$loader-duration / 8 * -2} infinite ease-in-out alternate}, #{#{$loader-prefix}-revolve-scale-keyframe #{$loader-duration / 4} #{$loader-duration / 8 * -3} infinite ease-in-out alternate};
     }
-}
-
-@-webkit-keyframes #{#{$loader-prefix}-revolve-translate-keyframe} {
-    0% {
-        transform: translateX(-100%);
+    @-webkit-keyframes #{#{$loader-prefix}-revolve-translate-keyframe} {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
     }
-    100% {
-        transform: translateX(100%);
-    }
-}
 
-
-@-webkit-keyframes #{#{$loader-prefix}-revolve-scale-keyframe} {
-    0% {
-        height: #{0.6 * 0.9em};
-        width: .6em;
-        z-index: -1;
-    }
-    100% {
-        height: 0.9em;
-        width: 1em;
-        z-index: 1;
+    @-webkit-keyframes #{#{$loader-prefix}-revolve-scale-keyframe} {
+        0% {
+            height: #{0.6 * 0.9em};
+            width: .6em;
+            z-index: -1;
+        }
+        100% {
+            height: 0.9em;
+            width: 1em;
+            z-index: 1;
+        }
     }
 }

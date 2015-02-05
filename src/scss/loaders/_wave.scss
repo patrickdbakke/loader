@@ -1,11 +1,13 @@
-$numDots: 20;
-
-.#{$loader-prefix}-wave {
+@mixin loader-wave($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color) {
+    @include loader($loader-width, $loader-height);
+    $numDots: 20;
+    $scale: 14;
+    overflow: visible;
     &:before {
         content: '';
         border-radius: 5em;
         background: transparent;
-        font-size: #{1 / $numDots * 1em};
+        font-size: #{1 / $numDots * $scale * 1em};
         height: 1em;
         width: 1em;
         position: absolute;
@@ -13,8 +15,8 @@ $numDots: 20;
         top: 0;
         $boxShadowString: "";
         @for $i from 0 to $numDots {
-            $x: #{$i * $loader-width};
-            $y: (sin(2 * pi() * $i / $numDots) * $numDots / 2 + $numDots / 2) * $loader-height - 0.5em;
+            $x: #{$i * $loader-width / $scale};
+            $y: (sin(2 * pi() * $i / $numDots) * $numDots / 2 + $numDots / 2) * $loader-height / $scale - 0.5em;
             $color: nth($loader-colors, $i % length($loader-colors) + 1);
             $currentShadow: $x $y $color;
             $boxShadowString: $boxShadowString + $currentShadow;
@@ -25,23 +27,22 @@ $numDots: 20;
         box-shadow: #{$boxShadowString};
         -webkit-animation: #{$loader-prefix}-wave-keyframe #{$loader-duration} infinite linear;
     }
-}
-
-@-webkit-keyframes #{#{$loader-prefix}-wave-keyframe} {
-    @for $j from 0 to $numDots {
-        #{$j / $numDots * 100%} {
-            $boxShadowString: "";
-            @for $i from 0 to $numDots {
-                $x: #{$i * $loader-width};
-                $y: (sin(2 * pi() * ($i + $j) / $numDots) * $numDots / 2 + $numDots / 2) * $loader-height - 0.5em;
-                $color: nth($loader-colors, $i % length($loader-colors) + 1);
-                $currentShadow: $x $y $color;
-                $boxShadowString: $boxShadowString + $currentShadow;
-                @if $i < $numDots - 1 {
-                    $boxShadowString: $boxShadowString + ",";
+    @-webkit-keyframes #{#{$loader-prefix}-wave-keyframe} {
+        @for $j from 0 to $numDots {
+            #{$j / $numDots * 100%} {
+                $boxShadowString: "";
+                @for $i from 0 to $numDots {
+                    $x: #{$i * $loader-width / $scale};
+                    $y: (sin(2 * pi() * ($i + $j) / $numDots) * $numDots / 2 + $numDots / 2) * $loader-height / $scale - 0.5em;
+                    $color: nth($loader-colors, $i % length($loader-colors) + 1);
+                    $currentShadow: $x $y $color;
+                    $boxShadowString: $boxShadowString + $currentShadow;
+                    @if $i < $numDots - 1 {
+                        $boxShadowString: $boxShadowString + ",";
+                    }
                 }
+                box-shadow: #{$boxShadowString};
             }
-            box-shadow: #{$boxShadowString};
         }
     }
 }

@@ -1,16 +1,14 @@
-$color1: nth($loader-colors, 0 % length($loader-colors) + 1);
-$color2: nth($loader-colors, 1 % length($loader-colors) + 1);
-$color1: $grey-600;
-$color2: $grey-800;
-$numStops: 20;
-
-.#{$loader-prefix}-content {
+@mixin loader-content($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color) {
+    @include loader($loader-width, $loader-height);
+    $color1: nth($loader-colors, 0 % length($loader-colors) + 1);
+    $color2: nth($loader-colors, 1 % length($loader-colors) + 1);
+    $numStops: 20;
     overflow: hidden;
     &:before {
         content: '_ ___  ___ __ ___ __ ____ _____ ____ ___ ___ __ __ _ _____ ____ _____ ___ ___ __ ____ _ __ _ ____ ___ ____ __ ____ __ __ _ ____ ___ _ ___ ____ ____ ___ ____ __ _____';
         font-family: initial;
         text-align: left;
-        font-size: .3em;
+        font-size: 3.2em;
         letter-spacing: -.05em;
         position: absolute;
         left: 0;
@@ -29,23 +27,22 @@ $numStops: 20;
         background: -webkit-gradient(linear, left top, right 50%, #{$gradientString});
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        -webkit-animation: #{$loader-prefix}-content-keyframe #{$loader-duration / 4} infinite linear;
+        -webkit-animation: #{$loader-prefix}-keyframe #{$loader-duration / 4} infinite linear;
     }
-}
-
-@-webkit-keyframes #{#{$loader-prefix}-content-keyframe} {
-    @for $j from 1 to $numStops {
-        #{$j / $numStops * 100%} {
-            $gradientString: "";
-            @for $i from 0 to $numStops {
-                $mix: abs($numStops / 2 - ($i + $j) % $numStops) / ($numStops / 2) * 100;
-                $newColor: color-stop(#{$i / $numStops * 100%}, #{mix($color1, $color2, $mix)});
-                $gradientString: $gradientString + $newColor;
-                @if $i < $numStops - 1 {
-                    $gradientString: $gradientString + ",";
+    @-webkit-keyframes #{#{$loader-prefix}-keyframe} {
+        @for $j from 1 to $numStops {
+            #{$j / $numStops * 100%} {
+                $gradientString: "";
+                @for $i from 0 to $numStops {
+                    $mix: abs($numStops / 2 - ($i + $j) % $numStops) / ($numStops / 2) * 100;
+                    $newColor: color-stop(#{$i / $numStops * 100%}, #{mix($color1, $color2, $mix)});
+                    $gradientString: $gradientString + $newColor;
+                    @if $i < $numStops - 1 {
+                        $gradientString: $gradientString + ",";
+                    }
                 }
+                background: -webkit-gradient(linear, left top, right 50%, #{$gradientString});
             }
-            background: -webkit-gradient(linear, left top, right 50%, #{$gradientString});
         }
     }
 }
