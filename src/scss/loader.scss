@@ -1,5 +1,5 @@
 @import "compass/reset";
-@import "colors";
+@import "./colors";
 
 $loader-prefix: loader;
 $loader-duration: 3s;
@@ -10,7 +10,7 @@ $loader-colors: #369EAD, #C24642, #7F6084, #86B402, #A2D1CF, #C8B631, #6DBCEB, #
 
 // $loader-colors: $blue, $blue-100, $blue-200, $blue-300, $blue-400, $blue-500, $blue-600, $blue-700;
 
-@import "loaders/base";
+@import "./loaders/base";
 
 body {
     background: #252520;
