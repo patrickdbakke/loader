@@ -10,7 +10,7 @@ $loader-colors: #369EAD, #C24642, #7F6084, #86B402, #A2D1CF, #C8B631, #6DBCEB, #
 
 // $loader-colors: $blue, $blue-100, $blue-200, $blue-300, $blue-400, $blue-500, $blue-600, $blue-700;
 
-@import "./loaders/base";
+@import "./loaders/importer";
 
 body {
     background: #252520;
@@ -58,4 +58,11 @@ body {
             border-top: 1px solid $grey-900;
         }
     }
+}
+
+.loaders {
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
 }
