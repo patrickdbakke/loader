@@ -1,4 +1,6 @@
 .about {
+    $codeColor: #C24642;
+    $aboutColor: $green;
     @extend .social;
     right: auto;
     left: 0;
@@ -6,10 +8,10 @@
         font-family: OpenSans;
     }
     .fa-info {
-        background-color: $green;
+        background-color: $aboutColor;
         cursor: pointer;
         &:hover {
-            color: $green;
+            color: $aboutColor;
             background-color: $white;
         }
     }
@@ -20,7 +22,7 @@
         position: absolute;
         background: inherit;
         padding: 1.5em;
-        line-height: 1.4em;
+        line-height: 1.5em;
         top: 100%;
         margin-top: -2em;
         left: #{-3em - $width};
@@ -30,7 +32,7 @@
         -webkit-transition: left 300ms 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55), color 200ms ease-in-out;
         p {
             font-size: 1.1em;
-            margin: 1em 0;
+            margin: 1.2em 0;
             &:first-child {
                 margin-top: 0;
             }
@@ -57,11 +59,11 @@
             left: 2em;
             span.code {
                 -webkit-transition: color 200ms 200ms ease-in-out;
-                color: $red;
+                color: $codeColor;
             }
             a {
                 -webkit-transition: color 200ms 200ms ease-in-out;
-                color: $green;
+                color: $aboutColor;
             }
         }
     }
