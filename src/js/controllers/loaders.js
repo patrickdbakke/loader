@@ -1,21 +1,17 @@
 'use strict';
 
 angular.module('loader')
-	.controller('loadersCtrl', function($scope){
-		$scope.loaders = [
-			'content',
-			'dots',
-			'hourglass',
-			'revolve',
-			'rubix-open',
-			'rubix',
-			'spiral',
-			'thin-bar',
-			'wave',
-		];
-		$scope.selectLoader = function(loader){	
-			console.log("here");	
-			$scope.activeLoader = loader;
-		};
-		$scope.selectLoader('hourglass');
+	.controller('loadersCtrl', function($scope, loaders, activeLoader, $state){
+		$scope.loaders = loaders;
+		_.each($scope.loaders, function(loader){
+			if (loader.name == $state.params.id) {
+				loader.active = true;
+			} else {
+				loader.active = false;
+			}
+		});
+		console.log("activeLoader", activeLoader);
+		$scope.activeLoader = _.find($scope.loaders, {
+			name: activeLoader
+		}) || $scope.loaders[0];
 	});

@@ -59,6 +59,9 @@ body {
         cursor: pointer;
         border-radius: 100em;
         &:hover {
+            background: $grey;
+        }
+        &.active {
             background: $white;
         }
     }
