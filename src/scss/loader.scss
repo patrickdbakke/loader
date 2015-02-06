@@ -1,4 +1,6 @@
 @import "./shared/colors";
+@import "./loaders/functions";
+@import "./loaders/base";
 
 $loader-prefix: loader;
 $loader-duration: 3s;
@@ -9,43 +11,67 @@ $loader-colors: #369EAD, #C24642, #7F6084, #86B402, #A2D1CF, #C8B631, #6DBCEB, #
 
 // $loader-colors: $blue, $blue-100, $blue-200, $blue-300, $blue-400, $blue-500, $blue-600, $blue-700;
 
-@import "./loaders/importer";
+@import "./loaders/content";
 
 .#{$loader-prefix}-content {
     @include loader-content($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
+@import "./loaders/dots";
+
 .#{$loader-prefix}-dots {
     @include loader-dots($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
+
+@import "./loaders/hourglass";
 
 .#{$loader-prefix}-hourglass {
     @include loader-hourglass($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
+@import "./loaders/revolve";
+
 .#{$loader-prefix}-revolve {
     @include loader-revolve($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
+
+@import "./loaders/rubix-open";
 
 .#{$loader-prefix}-rubix-open {
     @include loader-rubix-open($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
+@import "./loaders/rubix";
+
 .#{$loader-prefix}-rubix {
     @include loader-rubix($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
+
+@import "./loaders/speeding";
+
+.#{$loader-prefix}-speeding {
+    @include loader-speeding($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
+}
+
+@import "./loaders/spiral";
 
 .#{$loader-prefix}-spiral {
     @include loader-spiral($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
+@import "./loaders/thin-bar";
+
 .#{$loader-prefix}-thin-bar {
     @include loader-thin-bar($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
+@import "./loaders/tree";
+
 .#{$loader-prefix}-tree {
     @include loader-tree($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
+
+@import "./loaders/wave";
 
 .#{$loader-prefix}-wave {
     @include loader-wave($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
