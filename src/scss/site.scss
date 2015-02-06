@@ -1,0 +1,55 @@
+@import "compass/reset";
+@import "./colors";
+
+body {
+    background: #252520;
+    font-size: 16px;
+}
+
+.content {
+    position: absolute;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: .5em;
+}
+
+.wrap {
+    display: inline-block;
+    font-size: 1em;
+    border: 1px solid $grey-800;
+    padding: .5em;
+    border-radius: .5em;
+    margin: 1em;
+    position: relative;
+    &:hover {
+        &:after, &:before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+        }
+        &:after {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            border-left: 1px solid $grey-900;
+        }
+        &:before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-top: 1px solid $grey-900;
+        }
+    }
+}
+
+.loaders {
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
