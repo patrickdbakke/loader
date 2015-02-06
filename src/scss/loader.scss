@@ -1,4 +1,3 @@
-@import "compass/reset";
 @import "./shared/colors";
 
 $loader-prefix: loader;
@@ -42,6 +41,10 @@ $loader-colors: #369EAD, #C24642, #7F6084, #86B402, #A2D1CF, #C8B631, #6DBCEB, #
 
 .#{$loader-prefix}-thin-bar {
     @include loader-thin-bar($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
+}
+
+.#{$loader-prefix}-tree {
+    @include loader-tree($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color);
 }
 
 .#{$loader-prefix}-wave {
