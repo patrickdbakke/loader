@@ -1,0 +1,123 @@
+@mixin loader-speeding($loader-prefix, $loader-duration, $loader-width, $loader-height, $loader-colors, $loader-accent-color) {
+    @include loader($loader-width, $loader-height);
+    $color1: nth($loader-colors, 1);
+    $color2: nth($loader-colors, 2);
+    $carColor: nth($loader-colors, 0 % length($loader-colors) + 1);
+    $flamesColor: nth($loader-colors, 1 % length($loader-colors) + 1);
+    $zoomColor: nth($loader-colors, 2 % length($loader-colors) + 1);
+    $px: 0.025em;
+    overflow: hidden;
+    &:before {
+        content: '';
+        font-family: initial;
+        background: $carColor;
+        color: transparent;
+        height: $px;
+        width: .5em;
+        font-size: 3em;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -.25em;
+        -webkit-animation: #{$loader-prefix}-speeding-keyframe #{$loader-duration / 3.14} infinite linear;
+        box-shadow: loader-speeding-car($px, $carColor, 1, 1);
+    }
+    &:after {
+        content: '';
+        font-family: initial;
+        background: transparent;
+        color: transparent;
+        height: $px;
+        width: 4em;
+        font-size: 3em;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -.25em;
+        -webkit-animation: #{$loader-prefix}-speeding-zoom-keyframe #{$loader-duration / 4} infinite linear;
+    }
+    @-webkit-keyframes #{#{$loader-prefix}-speeding-keyframe} {
+        0% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), 0em 0 $flamesColor, -0.66em 0.03em $flamesColor, -1em 0.07em $flamesColor;
+        }
+        10% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), -0.66em 0 $flamesColor, -1.33em 0.03em $flamesColor, -2em 0.07em transparent;
+        }
+        20% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), -1.33em 0 $flamesColor, -2em 0.03em transparent, 0em 0.07em transparent;
+        }
+        30% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), -2em 0 transparent, 0em 0.03em transparent, -0.8em 0.11em $flamesColor;
+            margin-top: -.1em;
+        }
+        40% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), 0em 0 transparent, 0em 0.03em transparent, -1.6em 0.11em $flamesColor;
+        }
+        50% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), 0em 0 transparent, 0em 0.03em transparent, -3.2em 0.11em transparent;
+        }
+        60% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), 0em 0 transparent, 0em 0.03em transparent, 0em 0.03em $flamesColor;
+        }
+        70% {
+            margin-top: .1em;
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), 0em 0 transparent, 0em 0.03em transparent, -1em 0.03em $flamesColor;
+        }
+        80% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), 0em 0 transparent, 0em 0.03em transparent, -1em 0.03em $flamesColor;
+        }
+        90% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), 0em 0 transparent, 0em 0em $flamesColor, 0em 0em $flamesColor;
+        }
+        100% {
+            box-shadow: loader-speeding-car($px, $carColor, 1, 1), 0em 0 $flamesColor, -0.66em 0.03em $flamesColor, -1em 0.07em $flamesColor;
+        }
+    }
+
+    @-webkit-keyframes #{#{$loader-prefix}-speeding-zoom-keyframe} {
+        10% {
+            box-shadow: 5em -0.4em $zoomColor, 4em 1em transparent;
+        }
+        20% {
+            box-shadow: 0em -0.4em $zoomColor, 4em 1em $zoomColor;
+        }
+        30% {
+            box-shadow: 10em -0.4em $zoomColor, 0em 0.9em $zoomColor;
+        }
+        40% {
+            box-shadow: 10em -0.4em transparent, -4em 0.8em $zoomColor;
+        }
+        50% {
+            box-shadow: 3em -0.9em $zoomColor, -8em 0.7em transparent;
+        }
+        60% {
+            box-shadow: -2em -0.9em $zoomColor, 0em 0em transparent;
+        }
+        70% {
+            box-shadow: -6em -0.9em $zoomColor, 0em 0em transparent;
+        }
+        80% {
+            box-shadow: -6em -.9em transparent, 0em 0em transparent;
+        }
+        90% {
+            box-shadow: 0em 0 transparent, 0em 0em transparent;
+        }
+        100% {
+            box-shadow: 0em 0 transparent, 0em 0em transparent;
+        }
+    }
+}
+
+@function loader-speeding-car($size, $carColor, $x, $y) {
+    $positionsX: 0 0 0 1 2 2 -3 -3 -5 -5 0;
+    $positionsY: 1 2 3 1 2 3 -1 4 -2 5 0;
+    $shadowString: "";
+    @for $i from 1 to length($positionsY) {
+        $newShadow: #{#{nth($positionsX, $i) * $size} #{nth($positionsY, $i) * $size} $carColor};
+        $shadowString: $shadowString + $newShadow;
+        @if $i < length($positionsY) - 1 {
+            $shadowString: $shadowString + ",";
+        }
+    }
+    @return #{$shadowString};
+}

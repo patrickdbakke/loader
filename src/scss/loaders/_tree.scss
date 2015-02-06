@@ -16,14 +16,12 @@
         font-size: 3em;
         border-radius: 100em;
         height: 1em;
-        width: .1em;
+        width: .2em;
         top: 50%;
         left: 50%;
         margin-top: -.5em;
-        margin-left: -.05em;
-        border-left: 0.15em solid $trunkColor;
-        border-bottom: 0.05em solid $trunkColor;
-        border-top: 0.05em solid $trunkColor;
+        margin-left: -.07em;
+        background: $trunkColor;
         box-shadow: (-0.1em) 0 mix($trunkColor, black, 80%);
     }
     &:after {
