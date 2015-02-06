@@ -1,4 +1,5 @@
 @mixin loader($loader-width, $loader-height) {
+    font-family: initial;
     position: relative;
     display: inline-block;
     width: $loader-width;

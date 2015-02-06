@@ -1,0 +1,68 @@
+.about {
+    @extend .social;
+    right: auto;
+    left: 0;
+    .toggle {
+        font-family: OpenSans;
+    }
+    .fa-info {
+        background-color: $green;
+        cursor: pointer;
+        &:hover {
+            color: $green;
+            background-color: $white;
+        }
+    }
+    $width: 18em;
+    .paragraph {
+        width: $width;
+        height: auto;
+        position: absolute;
+        background: inherit;
+        padding: 1.5em;
+        line-height: 1.4em;
+        top: 100%;
+        margin-top: -2em;
+        left: #{-3em - $width};
+        overflow: hidden;
+        z-index: -1;
+        color: transparent;
+        -webkit-transition: left 300ms 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55), color 200ms ease-in-out;
+        p {
+            font-size: 1.1em;
+            margin: 1em 0;
+            &:first-child {
+                margin-top: 0;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        span.code, a {
+            -webkit-transition: color 400ms ease-in-out;
+            color: transparent;
+            text-decoration: none;
+            font-family: OpenSansBold;
+        }
+        a {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    &.open {
+        .paragraph {
+            -webkit-transition: left 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55), color 200ms 300ms ease-in-out;
+            color: $white;
+            left: 2em;
+            span.code {
+                -webkit-transition: color 200ms 200ms ease-in-out;
+                color: $red;
+            }
+            a {
+                -webkit-transition: color 200ms 200ms ease-in-out;
+                color: $green;
+            }
+        }
+    }
+}

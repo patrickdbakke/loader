@@ -1,17 +1,19 @@
 @import "compass/reset";
-
-body {
-    background: #252520;
-    font-size: 16px;
-}
-
 @import "./shared/colors";
 @import "./shared/resets";
 @import "./shared/icons";
 @import "./shared/fonts";
 @import "./social";
+@import "./about";
 
-.content {
+body {
+    background: #252520;
+    font-size: 16px;
+    font-family: OpenSansLight;
+    color: $white;
+}
+
+#content {
     position: absolute;
     overflow: auto;
     top: 0;

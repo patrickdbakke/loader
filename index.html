@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Loader</title>
+        <title>Single Element Loaders</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -17,9 +17,10 @@
         <script src="//localhost:35729/livereload.js"></script>
     </head>
     <body>
-        <div ng-app="loader">
-            <div class="social" social></div>
-            <div class="container" ui-view></div>
+        <div id="content" ng-app="loader">
+            <div social></div>
+            <div about></div>
+            <div ui-view></div>
         </div>
         <script type='text/javascript' src='src/js/bower_components/lodash/lodash.js'></script> 
         <script type='text/javascript' src='src/js/bower_components/angular/angular.js'></script> 
@@ -33,6 +34,7 @@
         <!-- endbuild -->
         
         <script type='text/javascript' src="src/js/directives/social.js"></script>
+        <script type='text/javascript' src="src/js/directives/about.js"></script>
         <script type='text/javascript' src="src/js/controllers/loaders.js"></script>
 
         <script type='text/javascript' src="src/js/config.js"></script>
